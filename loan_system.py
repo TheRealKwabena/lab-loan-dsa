@@ -9,9 +9,6 @@ LOAN_OPTIONS = {
     '3': {'name': 'Personal Loan', 'rate': 9.6, 'max_term': 10}  # [cite: 6]
 }
 
-
-
-
 #Constants and variables of the program
 DEBT_RATIO_LIMIT = 0.50 
 CSV_FILE = 'loan_records.csv'
@@ -60,31 +57,31 @@ def get_loan_type():
         choice = input("Enter the number for your desired loan type: ")
         if choice in LOAN_OPTIONS:
             return choice # 
-        print("❌ Invalid choice. Please select a valid number from the list.") # [cite: 20]
+        print("Invalid choice. Please select a valid number from the list.")
 
 
 def get_positive_float(prompt):
-    """""Gets and validates a positive floating-point number from the user. [cite: 19]"""
+    """""Gets and validates a positive floating-point number from the user."""
     while True:
         try:
             value = float(input(prompt))
             if value > 0:
                 return value
-            print("❌ Invalid input. Please enter a positive number.") # [cite: 20]
+            print("Invalid input. Please enter a positive number.")
         except ValueError:
-            print("❌ Invalid format. Please enter a numeric value.") # [cite: 80]
+            print("Invalid format. Please enter a numeric value.")
 
 def get_loan_term(max_term):
-    """""Gets and validates the loan term, ensuring it's within the allowed maximum. [cite: 18]"""
+    """""Gets and validates the loan term, ensuring it's within the allowed maximum.]"""
     while True:
         try:
-            prompt = f"Enter the loan term in years (1 - {max_term} years): " # [cite: 14]
+            prompt = f"Enter the loan term in years (1 - {max_term} years): "
             term = int(input(prompt))
             if 1 <= term <= max_term:
                 return term
-            print(f"❌ Invalid term. Please enter a value between 1 and {max_term}.") # [cite: 20]
+            print(f"Invalid term. Please enter a value between 1 and {max_term}.")
         except ValueError:
-            print("❌ Invalid format. Please enter a whole number for the years.")
+            print("Invalid format. Please enter a whole number for the years.")
 
 # --- File Handling ---
 
@@ -106,7 +103,7 @@ def save_loan_record(loan_details):
 
 def main():
     """Main function to run the bank loan management system simulation."""
-    print("🏦 Welcome to the Bank Loan Management System!")
+    print("Welcome to the Bank Loan Management System!")
 
     while True:
         loan_choice_key = get_loan_type()
@@ -153,7 +150,7 @@ def main():
                     else:
                         principal = None; break
         
-        # ""Display final summary and save if approved by the user [cite: 72]
+        # ""Display final summary and save if approved by the user
         if principal is not None:
             total_interest = calculate_total_interest(principal, monthly_payment, term)
             
@@ -163,11 +160,11 @@ def main():
             print(f"{'Annual Interest Rate:':<22} {annual_rate}%")
             print(f"{'Loan Term:':<22} {term} years")
             print("-" * 35)
-            print(f"{'Monthly Payment:':<22} ${monthly_payment:,.2f}") # [cite: 74]
-            print(f"{'Total Interest Paid:':<22} ${total_interest:,.2f}") # [cite: 75]
+            print(f"{'Monthly Payment:':<22} ${monthly_payment:,.2f}")
+            print(f"{'Total Interest Paid:':<22} ${total_interest:,.2f}")
             print("-" * 35)
 
-            proceed = input("Do you want to finalize this loan? (yes/no): ").lower().strip() # [cite: 76]
+            proceed = input("Do you want to finalize this loan? (yes/no): ").lower().strip()
             if proceed == 'yes':
                 loan_record = {
                     'Loan Type': loan_name, 'Loan Amount': f"{principal:.2f}",
@@ -181,7 +178,7 @@ def main():
 
         # Ask to process another loan
         if input("\nProcess another loan? (yes/no): ").lower().strip() != 'yes':
-            print("\nThank you for using the Bank Loan Management System. Goodbye! 👋")
+            print("\nThank you for using the Bank Loan Management System. Goodbye!")
             break
 
 if __name__ == "__main__":
