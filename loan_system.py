@@ -94,9 +94,9 @@ def save_loan_record(loan_details):
             if not file_exists:
                 writer.writeheader()
             writer.writerow(loan_details)
-        print(f"\n✅ Loan record successfully saved to {CSV_FILE}.")
+        print(f" Loan record successfully saved to {CSV_FILE}.")
     except IOError as e:
-        print(f"\n❌ Error: Could not write to file {CSV_FILE}. {e}")
+        print(f" Error: Could not write to file {CSV_FILE}. {e}")
 
 
 # --- Main Application Logic ---
